@@ -1,0 +1,235 @@
+/* CSS geral*/
+body{
+    min-height: 100vh;
+    padding-bottom: 100px;
+    position: relative;
+}
+
+header{
+    background-color: white;
+    border-bottom: 1px solid #ccc;
+}
+
+/*Altera as margens dos cards*/
+.row{
+    margin: 0;
+}
+
+/*Define o espaçamento entre o conteúdo e as bordas definidas*/
+.container-fluid{
+    padding: 0;
+}
+
+.btn-primary{
+    margin-top: 10px;
+    background-color: #f2a340;
+    border: 2px solid #c28008;
+}
+
+.btn-primary:hover{
+    background-color: #c28008;
+    border-color: #c28008;
+}
+
+.msg{
+    background-color: #04edda;
+    color: #155724;
+    border: 1px solid #c3e6c8;
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+}
+
+*{
+    font-family: 'Roboto';
+}
+
+footer{
+    color: blue;
+}
+
+#navbar img{
+    margin-left: 10px;
+    width: 40px;
+}
+
+#navbar{
+    /*Alinha o texto no container*/
+   
+    background-color: #fff;
+    padding: 5px 0;
+}
+
+
+/*Muda a coloracao quando o mouse passa por cima dos itens da navbar*/
+#navbar a:hover{
+    color: #f2a340;
+}
+
+
+/* Search Container */
+#search-container{
+    background-image: url('../img/banner.jpg');
+    /* Coloca a imagem em toda extensão do container */
+    background-size: cover;
+    background-position: center;
+    height: 400px;
+    padding: 50px;
+    text-align: center;
+}
+
+#search-container h1{
+    color: #f2a340;
+    margin-bottom: 30px;
+    font-weight: 900;
+
+}
+
+#serach-container form{
+    width: 50px;
+    margin: 0 auto;
+}
+
+/*Events list*/
+
+#events-container{
+    padding: 50px;
+}
+
+#events-container h2{
+    margin-bottom: 10px;
+}
+
+#events-container .subtitle{
+    color: #757575;
+    margin-bottom: 30px;
+}
+
+#cards-container{
+    display: flex;
+}
+
+#events-container .card{
+    flex: 1 1 24%;
+    max-width: 25%;
+    border-radius: 10px;
+    padding: 0;
+    margin: 0.5%;
+}
+
+#events-container img{
+    max-height: 150px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.card .card-date{
+    font-size: 12px;
+    color: #ccc;
+
+}
+
+.card .card-title{
+    color: #212121;
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 30px ;
+
+}
+
+.card-participants{
+    font-size: 14px;
+    color: #757575;
+
+}
+
+/*Css da pagina de criação de curso*/
+
+#event-create-container{
+    padding: 30px;
+}
+
+#event-create-container label{
+    margin: 5px;
+    font-weight: bold;
+}
+
+#event-create-container input,
+#event-create-container select,
+#event-create-container textarea{
+    font-size: 12px;
+}
+
+#checkbox input{
+    margin-right: 10px;
+}
+
+/*Mostrando o evento*/
+
+#image-container,
+#info-container {
+    margin-top: 30px;
+
+}
+
+#image-container img{
+    height: 300px;
+    border-radius: 10px;
+}
+
+#info-container h1{
+    font-size: 36px;
+    font-weight: 900;
+}
+
+#info-container p{
+    margin: 0;
+    font-size: 14px;
+    display: flex;
+}
+
+#info-container h3,
+#description-container h3
+{
+    font-size: 20px;
+    font-weight: bold;
+}
+
+#info-container ion-icon{
+    font-size: 20px;
+    color: #f2a340;
+    margin-right: 5px;
+}
+
+#info-container #event-submit{
+    margin: 20px 0;
+}
+
+#itens-list{
+    list-style: none;
+    padding-left: 0;
+}
+
+#itens-list li{
+    display: flex;
+}
+
+
+#sobre_evento{
+    margin-top: 10px;
+}
+
+/* Rodapé */
+footer{
+    text-align: center;
+    background-color: #353e48;
+    color: #fff;
+    padding: 30px;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+footer p{
+    margin-bottom: 0;
+}
