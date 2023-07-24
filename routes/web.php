@@ -12,8 +12,6 @@ Route::get('/', [EventController::class, 'index']);
 Route::get('/events/create', [EventController::class, 'create']);
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);
-Route::get('/events/entrar', [EventController::class, 'inscrever_em_eventos']);
-Route::get('/events/cadastrar', [EventController::class, 'Cadastrar']);
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -67,3 +65,12 @@ Route::get('/produtos', function () {
 
 
  
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified'
+])->group(function () {
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
+});
