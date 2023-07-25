@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Event;
+use App\Models\User;
 
 class EventController extends Controller
 {
@@ -26,16 +27,24 @@ class EventController extends Controller
         return view('/events/create');
     }
 
+    public function dashboard(){
+        $user = auth()->user();
+        $events = $user->events;
+        return view('events.dashboard', ['events' => $events]);
+    }
+
     public function show($id){
 
         $event = Event::findOrFail($id);
+        /*
+        Faz a mesma função da linha abaixo
+        dd($event->user->name);
+        */
+        $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event]);
+        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
     }
 
-    public function inscrever_em_eventos(){
-        return view('/events/entrar');
-    }
 
     public function store(Request $request){
         $event = new Event;
@@ -53,6 +62,8 @@ class EventController extends Controller
         }else {
             $event->image = 'event_placeholder.jpg';
         }
+        $user = auth()->user();
+        $event->user_id = $user->id;
         $event->title = $request->title;
         $event->date = $request->date;
         $event->city = $request->city;
