@@ -16,7 +16,8 @@
         </div>
         <div id="events-container" class="col-md-12">
                 @if ($search)
-                <p>Buscando por: {{$search}}</p>
+                <p>Buscando por: {{$search}}</p> 
+                <p><a href="/">Voltar a ver todos</a></p>
                 @else
                 <h2>Próximos Eventos</h2>
                 <p class='subtitle'>Veja os eventos dos próximos dias</p>
@@ -35,7 +36,7 @@
                                 </div>
                         @endforeach
                         @if (count($events)==0 && $search)
-                                <p>Não foi possível encontrar nenhum evento com {{$search}}</p><a href="/">Ver todos!</a>
+                                <p>Não foi possível encontrar nenhum evento com {{$search}}</p>
                         @elseif (count($events)==0)
                                 <p>Não há eventos disponiveis</p>
                         @endif

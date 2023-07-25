@@ -37,10 +37,6 @@ class EventController extends Controller
         return view('/events/entrar');
     }
 
-    public function Cadastrar(){
-        return view('/events/cadastrar');
-    }
-
     public function store(Request $request){
         $event = new Event;
         if ($request->hasFile('image') && $request->file('image')->isValid())
