@@ -63,6 +63,11 @@
                         @endauth
                     </ul>
                </div>
+               @auth
+                <div class="email-user">
+                    Usuário: 
+                </div>
+               @endauth
             </nav>
         </header>
         <!--Possibilita utilizar conteúdo dinâmico de cada pagina-->

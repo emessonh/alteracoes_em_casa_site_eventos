@@ -1,3 +1,0 @@
-Pegar uma imagem na request - resolvido
-Problemas subir pro github - resolvido
-Não esta encontrando a pagina de mostrar o evento - resolvido
