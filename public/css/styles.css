@@ -118,7 +118,8 @@ footer{
 }
 
 #events-container img{
-    height: 170px;
+    max-height: 40%;
+    margin: auto;
     width: 100%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
@@ -228,7 +229,18 @@ footer{
 }
 
 .dashboard-events-container{
-    width: 25%;
+    width: 80%;
+}
+
+.dashboard-events-container form{
+    display: inline-block;
+}
+
+/*CSS da página de edição*/
+.img-preview{
+    margin: auto;
+    width: 50%;
+    border-radius: 10px;
 }
 
 /* Rodapé */

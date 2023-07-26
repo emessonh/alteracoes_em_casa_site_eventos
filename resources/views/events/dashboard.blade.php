@@ -7,7 +7,7 @@
 <div class="col-md-10 offset-md-1 dashboard-title-container">
     <h1>Meus Eventos</h1>
 </div>
-<div class="col-md-10 offset-md-1 dashboard-events-containe">
+<div class="col-md-10 offset-md-1 dashboard-events-container">
     @if(count($events) > 0)
     <table class="table">
         <thead>
@@ -23,10 +23,18 @@
         <tbody>
             @foreach($events as $event)
             <tr>
-                <th scope="row">{{$loop->index + 1}}</th>
+                <th scope="row">{{$loop->iteration}}</th>
                 <td><a href="/events/{{$event->id}}">{{$event->title}}</a></td>
                 <td>0</td>
-                <td><a href="#">Editar</a> ou <a href="#">Deletar</a></td>
+                <td>
+                    <a href="{{route('editEvent', $event->id)}}" class='btn btn-info edit-btn'><ion-icon name='create-outline'></ion-icon>Editar</a>
+                    <!--Chamar a rota através do name-->
+                    <form action="{{route('deleteEvents', $event->id)}}" method="post">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="btn btn-danger delete-btn"><ion-icon name='trash-outline'></ion-icon>Deletar</button> 
+                    </form>
+                </td>
             </tr>
             @endforeach
         </tbody>

@@ -13,6 +13,11 @@ Route::get('/events/create', [EventController::class, 'create'])->middleware('au
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);
 Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');
+/** Utilizando name no front para chamar a action, atrvés de name('nome Atribuído') */
+Route::delete('/events/destroy/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('deleteEvents');
+Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth')->name('editEvent');
+Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
+
 
 /*
 |--------------------------------------------------------------------------
