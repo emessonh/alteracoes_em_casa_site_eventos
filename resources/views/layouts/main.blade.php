@@ -20,7 +20,7 @@
         <header>
             <nav class='navbar navbar-expand-lg navbar-light'>
                <div class="collapse navbar-collapse" id="navbar">
-                    
+
                     <ul class="navbar-nav">
                         <li>
                         <a href="/" class="navbar-brand">
@@ -36,7 +36,7 @@
                             <a href="#" class="nav-link">Eventos</a>
                         </li>
                         <li class="nav-item">
-                            <a href="/events/create" class="nav-link">Criar eventos</a>
+                            <a href="/events/create" class="nav-link">Criar Eventos</a>
                         </li>
                         @guest
                         <li class="nav-item">
@@ -48,12 +48,12 @@
                         @endguest
                         @auth
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">Meus eventos</a>
+                            <a href="/dashboard" class="nav-link">Eventos Criados</a>
                         </li>
                         <li class="nav-item">
                             <form action="/logout" method="get">
                                 @csrf
-                                <a href="/logout" class='nav-link' 
+                                <a href="/logout" class='nav-link'
                                     onclick='event.preventDeDefault();
                                     this.closest('form').submit();'>
                                 Sair
@@ -65,7 +65,7 @@
                </div>
                @auth
                 <div class="email-user">
-                    Usuário: 
+                    Usuário:
                 </div>
                @endauth
             </nav>

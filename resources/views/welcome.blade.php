@@ -10,13 +10,13 @@
         <div id="search-container" class="col-md-12">
                 <h1>Busque  um evento</h1>
                 <form action="/" method="get">
-                        <input type="text" name="search" id="seach"  
+                        <input type="text" name="search" id="seach"
                         class='form-control' placeholder='Procurar...'>
                 </form>
         </div>
         <div id="events-container" class="col-md-12">
                 @if ($search)
-                <p>Buscando por: {{$search}}</p> 
+                <p>Buscando por: {{$search}}</p>
                 <p><a href="/">Voltar a ver todos</a></p>
                 @else
                 <h2>Próximos Eventos</h2>
@@ -30,7 +30,7 @@
                                         <div class="card-body">
                                                 <p class="card-date">{{date('d/m/Y', strtotime($event->date))}}</p>
                                                 <h5 class="card-title">{{$event -> title}}</h5>
-                                                <p class="card-participants">X Participantes</p>
+                                                <p class="card-participants">{{count($event->users)}} Participante(s)</p>
                                                 <a href="/events/{{$event->id}}" class='btn btn-primary'>Saber mais</a>
                                         </div>
                                 </div>
@@ -42,6 +42,6 @@
                         @endif
                 </div>
         </div>
-        
+
 
 @endsection

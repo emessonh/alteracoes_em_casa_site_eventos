@@ -17,7 +17,7 @@ Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('aut
 Route::delete('/events/destroy/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('deleteEvents');
 Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth')->name('editEvent');
 Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
-
+Route::get('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +37,10 @@ Route::get('/', function () {
 
     $array = [1,2,3,4,5];
     $nomes = ['emesson', 'rafael', 'milena', 'natalia'];
-    return view('Aulas_iniciais/welcome', 
-    ['nome' => $nome, 
-    'idade' => $idade, 
-    'array' => $array, 
+    return view('Aulas_iniciais/welcome',
+    ['nome' => $nome,
+    'idade' => $idade,
+    'array' => $array,
     'nomes' => $nomes]);
 });
 
@@ -61,7 +61,7 @@ Route::get('/produtos', function () {
     return view('avaliacao', [ 'id' => $id]);
 }); */
 
-/* Utilizando query para passar parâmetros 
+/* Utilizando query para passar parâmetros
     ex: /busca?search=camisa
 */
 /* Route::get('/busca', function () {
@@ -71,5 +71,5 @@ Route::get('/produtos', function () {
 
 
 
- 
+
 

@@ -9,7 +9,7 @@ use App\Models\User;
 class EventController extends Controller
 {
     public function index (){
-        $search = request('search'); 
+        $search = request('search');
         if ($search){
             /*permite fazer buscas no banco*/
             $events = Event::where([
@@ -22,7 +22,7 @@ class EventController extends Controller
 
         return view('welcome', ['events' => $events, 'search' => $search]);
     }
-     
+
     public function create(){
         return view('/events/create');
     }
@@ -72,8 +72,8 @@ class EventController extends Controller
         $event->itens = $request->itens;
 
         /** Verificação de imagem */
-        
-        
+
+
         $event->save();
 
         return redirect('/')->with('msg', 'Evento criado com sucesso');
@@ -107,5 +107,17 @@ class EventController extends Controller
 
         Event::findOrFail($request->id)->update($data);
         return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+    }
+
+    public function joinEvent($id){
+        $user = auth()->user();
+
+        $user->eventsAsParticipant()->attach($id);
+
+        $event = Event::findOrFail($id);
+
+        return redirect('/')->with('msg', 'Presença confirmada no evento '.$event->title);
+
+
     }
 }

@@ -5,21 +5,21 @@
 @section('content')
 
 <div class="col-md-10 offset-md-1 dashboard-title-container">
-    <h1>Meus Eventos</h1>
+    <h1>Eventos Criados</h1>
 </div>
 <div class="col-md-10 offset-md-1 dashboard-events-container">
     @if(count($events) > 0)
     <table class="table">
         <thead>
             <tr>
-               <th scope='col'>#</th>  
-               <th scope='col'>Nome</th> 
-               <th scope='col'>participantes</th> 
-               <th scope='col'>Ações</th> 
+               <th scope='col'>#</th>
+               <th scope='col'>Nome</th>
+               <th scope='col'>participantes</th>
+               <th scope='col'>Ações</th>
             </tr>
         </thead>
 
-    
+
         <tbody>
             @foreach($events as $event)
             <tr>
@@ -32,7 +32,7 @@
                     <form action="{{route('deleteEvents', $event->id)}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger delete-btn"><ion-icon name='trash-outline'></ion-icon>Deletar</button> 
+                        <button type="submit" class="btn btn-danger delete-btn"><ion-icon name='trash-outline'></ion-icon>Deletar</button>
                     </form>
                 </td>
             </tr>
