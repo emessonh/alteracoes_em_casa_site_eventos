@@ -1,10 +1,12 @@
-Tela inicial: Exibir usuário logado;
+Prioridade:
 Perfil: Fazer a página de perfil;
-Eventos: Fazer a página de eventos;
+
+Tela inicial: Exibir usuário logado;
 Editar eventos: Ao clicar em excluir pedir confirmação da ação do usuário;
+                Ao clicar em sair do evento pedir confirmação da ação do usuário;
 Sair: Apresentar uma mensagem que o usuário foi deslogado;
 EXTRA:
-Presença no evento: limitar o usuário a participar daquele evento uma única vez
+Presença no evento: limitar o usuário a participar daquele evento uma única vez - feito
 
 26/07/2023:
 Saiba Mais: consertar as imagens - feito
@@ -15,3 +17,5 @@ Ao confirmar presença voltar a welcome e Apresentar mensagem - feito
 Mostrar quantos usuário estão vão participar do evento - feito
 Ao logar ir para página welcome - feito
 Mostrar os eventos que o usuário está participando - feito
+Usuário saiu do evento - feito
+Presença no evento: limitar o usuário a participar daquele evento uma única vez - feito

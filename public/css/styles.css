@@ -55,7 +55,7 @@ footer{
 
 #navbar{
     /*Alinha o texto no container*/
-   
+
     background-color: #fff;
     padding: 5px 0;
 }
@@ -168,6 +168,15 @@ footer{
 
 /*Mostrando o evento*/
 
+#info-container .already-joined-msg{
+    margin: 15px 0;
+    color: #004085;
+    background-color: #CCE5FF;
+    border: 1px solid #88DAFF;
+    padding: 10px;
+    width: 275px;
+}
+
 #image-container,
 #info-container {
     margin-top: 30px;
@@ -221,7 +230,7 @@ footer{
 
 .dashboard-title-container{
     margin-bottom: 30px;
-    margin-top: 30px;   
+    margin-top: 30px;
 }
 
 .dashboard-events-container{

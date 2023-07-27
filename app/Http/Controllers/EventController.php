@@ -38,13 +38,26 @@ class EventController extends Controller
     public function show($id){
 
         $event = Event::findOrFail($id);
+        $user = auth()->user();
+        $hasUserJoined = false;
+        if ($user){
+            $userEvents = $user->eventsAsParticipant->toArray();
+            foreach($userEvents as $user){
+                if ($user['id'] == $id){
+                    $hasUserJoined = true;
+                }
+            }
+        }
+
         /*
         Faz a mesma função da linha abaixo
         dd($event->user->name);
         */
         $eventOwner = User::where('id', $event->user_id)->first()->toArray();
 
-        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+        return view('events.show', ['event' => $event,
+        'eventOwner' => $eventOwner,
+        'hasUserJoined' => $hasUserJoined]);
     }
 
 
@@ -128,5 +141,12 @@ class EventController extends Controller
         return redirect('/')->with('msg', 'Presença confirmada no evento '.$event->title);
 
 
+    }
+
+    public function leaveEvent($id){
+        $user = auth()->user();
+        $user->eventsAsParticipant()->detach($id);
+        $event = Event::findOrFail($id);
+        return redirect('/')->with('msg', 'Você saiu do evento: '.$event->title);
     }
 }

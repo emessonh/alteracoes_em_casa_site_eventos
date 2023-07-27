@@ -14,6 +14,7 @@
                 <p class='event-city'><ion-icon name="location-outline"></ion-icon>{{$event->city}}</p>
                 <p class="event-participants"><ion-icon name='people-outline'></ion-icon>{{count($event->users)}} participante(s)</p>
                 <p class="event-owner"><ion-icon name='star-outline'></ion-icon>{{$eventOwner['name']}}</p>
+                @if ($hasUserJoined == false)
                 <form action="/events/join/{{$event->id}}" method="GET">
                     @csrf
                     <a href="/events/join/{{$event->id}}" class="btn btn-primary"
@@ -22,6 +23,9 @@
                     Confirmar Presença
                     </a>
                 </form>
+                @else
+                    <p class="already-joined-msg">Você já está participando desse evento!</p>
+                @endif
                 <ul id="itens-list">
                     @foreach($event->itens as $item)
                         <li><ion-icon name='play-outline'></ion-icon><span>{{$item}}</span></li>
