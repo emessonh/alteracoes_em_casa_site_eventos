@@ -48,7 +48,7 @@
                         @endguest
                         @auth
                         <li class="nav-item">
-                            <a href="/dashboard" class="nav-link">Eventos Criados</a>
+                            <a href="/dashboard" class="nav-link">Meus Eventos</a>
                         </li>
                         <li class="nav-item">
                             <form action="/logout" method="get">

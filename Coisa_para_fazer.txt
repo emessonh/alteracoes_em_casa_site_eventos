@@ -1,12 +1,17 @@
 Tela inicial: Exibir usuário logado;
-	          Consertar os cards - feito
-Perfil: Fazer a página de perfil; - 27/07/2023
+Perfil: Fazer a página de perfil;
 Eventos: Fazer a página de eventos;
 Editar eventos: Ao clicar em excluir pedir confirmação da ação do usuário;
 Sair: Apresentar uma mensagem que o usuário foi deslogado;
+EXTRA:
+Presença no evento: limitar o usuário a participar daquele evento uma única vez
+
+26/07/2023:
 Saiba Mais: consertar as imagens - feito
-Ao logar ir para página welcome
-Ao confirmar presença voltar a welcome e Apresentar mensagem
 
 27/07/2023:
 Confirmar Presença do usuário - feito
+Ao confirmar presença voltar a welcome e Apresentar mensagem - feito
+Mostrar quantos usuário estão vão participar do evento - feito
+Ao logar ir para página welcome - feito
+Mostrar os eventos que o usuário está participando - feito
