@@ -23,6 +23,10 @@ class EventController extends Controller
         return view('welcome', ['events' => $events, 'search' => $search]);
     }
 
+    public function showPerfil($id){
+        return view('/perfil');
+    }
+
     public function create(){
         return view('/events/create');
     }
@@ -148,5 +152,15 @@ class EventController extends Controller
         $user->eventsAsParticipant()->detach($id);
         $event = Event::findOrFail($id);
         return redirect('/')->with('msg', 'Você saiu do evento: '.$event->title);
+    }
+
+    public function updateUser(Request $request){
+        $data = $request->all();
+        $user = auth()->user();
+        Event::findOrFail($user->id)->update($data);
+    }
+
+    public function deleteUser($id){
+        User::where('id', $id)->delete();
     }
 }

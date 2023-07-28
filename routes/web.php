@@ -19,7 +19,9 @@ Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('a
 Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 Route::get('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
 Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth');
-
+Route::get('/perfil/{id}', [EventController::class, 'showPerfil'])->middleware('auth');
+Route::post('/updateUser/{id}', [EventController::class, 'updateUser'])->middleware('auth');
+Route::post('/deleteUser/{id}', [EventController::class, 'deleteUser'])->middleware('auth');
 /*
 |--------------------------------------------------------------------------
 | Web Routes

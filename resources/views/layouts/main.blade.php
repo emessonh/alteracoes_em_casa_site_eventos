@@ -27,14 +27,18 @@
                             <img src="/img/hdcevents_logo.svg" alt="">
                         </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="/" class="nav-link">Página Inicial</a>
+                        </li>
                         @auth
                         <li class="nav-item">
-                            <a href="/" class="nav-link">Perfil</a>
+                            <a href="/perfil/{{auth()->user()->id}}" class="nav-link">Perfil</a>
                         </li>
-                        @endauth
+
                         <li class="nav-item">
                             <a href="/events/create" class="nav-link">Criar Eventos</a>
                         </li>
+                        @endauth
                         @guest
                         <li class="nav-item">
                             <a href="/login" class="nav-link">Entrar</a>
@@ -57,12 +61,10 @@
                                 </a>
                             </form>
                         </li>
-                        @endauth
                     </ul>
                </div>
-               @auth
-                <div class="email-user">
-                    Usuário:
+                <div id="email-user">
+                    Usuário: {{auth()->user()->email}}
                 </div>
                @endauth
             </nav>
