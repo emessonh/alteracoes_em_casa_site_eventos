@@ -6,7 +6,8 @@
 
         <!-- Diretivas do blade (permitem utilizar estruturas de programação na view, deixando
         dinâmica) -->
-        <!--<img src="/img/banner.jpg" alt="Banner de eventos">-->
+
+
         <div id="search-container" class="col-md-12">
                 <h1>Busque  um evento</h1>
                 <form action="/" method="get">

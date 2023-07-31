@@ -2,8 +2,6 @@ Prioridade:
 Editar eventos: Ao clicar em excluir pedir confirmação da ação do usuário;
                 Ao clicar em sair do evento pedir confirmação da ação do usuário;
 Sair: Apresentar uma mensagem que o usuário foi deslogado;
-Ao logar ir para página welcome
-Bug: ao logar está adicionando o usuário em um evento
 
 26/07/2023:
 Saiba Mais: consertar as imagens - feito
@@ -20,4 +18,15 @@ Presença no evento: limitar o usuário a participar daquele evento uma única v
 
 Tela inicial: Exibir usuário logado - feito
 Perfil: Fazer a página de perfil - em andamento
+    * foto do usuário - fazer
+    * problemas não está apresentando a mensagem - fazer
+    * deletar a conta
+
+29/07/2023:
+
+perfil do usuário: Colocar foto padrão do usuário - funcionando
+                   mudar usuário - funcionando
+                   Mudar senha - funcionando
+                   Flashcards
+
 

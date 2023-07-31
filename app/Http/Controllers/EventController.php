@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
 class EventController extends Controller
 {
@@ -24,7 +25,13 @@ class EventController extends Controller
     }
 
     public function showPerfil($id){
-        return view('/perfil');
+        $db_foto = auth()->user()->photo;
+        if ($db_foto == null){
+            $foto = '/foto-perfil.jpg';
+        }else{
+            $foto = auth()->user()->photo;
+        }
+        return view('/perfil', ['foto' => $foto, 'msg_alert' => null]);
     }
 
     public function create(){
@@ -155,12 +162,43 @@ class EventController extends Controller
     }
 
     public function updateUser(Request $request){
-        $data = $request->all();
-        $user = auth()->user();
-        Event::findOrFail($user->id)->update($data);
+        $email = $request->nameUser;
+        $password = $request->passwordUser;
+        $confirmPassword = $request->confirmPassword;
+
+        if ($password == $confirmPassword && strlen($password) >= 8){
+            if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid())
+            {
+                $photoUser = $request->foto_perfil;
+
+                $extension = $photoUser->extension();
+
+                $imageName = md5($photoUser->getClientOriginalName() . strtotime('now')) .'.'.$extension;
+
+                $photoUser->move(public_path('/img/users'), $imageName);
+
+                $data = $imageName;
+
+                User::findOrFail($request->id)->update(['email' => $request->nameUser, 'password' => Hash::make($request->passwordUser),
+                'photo' => '/img/users'.$data]);
+            }else{
+                User::findOrFail($request->id)->update(['email' => $request->nameUser, 'password' => Hash::make($request->passwordUser)]);
+            }
+            return redirect('/')->with('msg', 'Usuário atualizado com sucesso!');
+        }
+        elseif (strlen($password) < 8){
+            return view('/perfil', ['foto' => '/foto-perfil.jpg', 'msg_alert' => 'Senha muito pequena, a senha deve ter no mínimo 8 caracter']);
+        }
+        else{
+            return view('/perfil', ['foto' => '/foto-perfil.jpg', 'msg_alert' => 'Senhas diferentes, tente novamente']);
+        }
+
+
     }
 
     public function deleteUser($id){
+        $user = auth()->user();
+        $user->eventsAsParticipant()->detach($id);
         User::where('id', $id)->delete();
     }
 }

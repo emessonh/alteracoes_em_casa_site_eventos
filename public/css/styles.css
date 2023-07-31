@@ -40,6 +40,15 @@ header{
     width: 100%;
 }
 
+.msg-alert{
+    background-color: rgb(250, 52, 52);
+    color: black;
+    border: 1px solid #c3e6c8;
+    margin: 0px;
+    text-align: center;
+    width: 100%;
+}
+
 *{
     font-family: 'Roboto';
 }
