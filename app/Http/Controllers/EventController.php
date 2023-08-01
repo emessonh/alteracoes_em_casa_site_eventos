@@ -25,11 +25,11 @@ class EventController extends Controller
     }
 
     public function showPerfil($id){
-        $db_foto = auth()->user()->photo;
+        $db_foto = auth()->user()->profile_photo_path;
         if ($db_foto == null){
             $foto = '/foto-perfil.jpg';
         }else{
-            $foto = auth()->user()->photo;
+            $foto = auth()->user()->profile_photo_path;
         }
         return view('/perfil', ['foto' => $foto, 'msg_alert' => null]);
     }
@@ -162,10 +162,13 @@ class EventController extends Controller
     }
 
     public function updateUser(Request $request){
+        $user = User::findOrFail($request->id);
         $email = $request->nameUser;
         $password = $request->passwordUser;
         $confirmPassword = $request->confirmPassword;
 
+        $user->email = $email;
+        $user->password = Hash::make($password);
         if ($password == $confirmPassword && strlen($password) >= 8){
             if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid())
             {
@@ -177,20 +180,19 @@ class EventController extends Controller
 
                 $photoUser->move(public_path('/img/users'), $imageName);
 
-                $data = $imageName;
+                $user->profile_photo_path = $imageName;
 
-                User::findOrFail($request->id)->update(['email' => $request->nameUser, 'password' => Hash::make($request->passwordUser),
-                'photo' => '/img/users'.$data]);
+                $user->update();
             }else{
-                User::findOrFail($request->id)->update(['email' => $request->nameUser, 'password' => Hash::make($request->passwordUser)]);
+                $user->update();
             }
             return redirect('/')->with('msg', 'Usuário atualizado com sucesso!');
         }
         elseif (strlen($password) < 8){
-            return view('/perfil', ['foto' => '/foto-perfil.jpg', 'msg_alert' => 'Senha muito pequena, a senha deve ter no mínimo 8 caracter']);
+            return view('/perfil', ['foto' => '/foto-perfil.jpg'])->with('msg_alert', 'Senha muito pequena, a senha deve ter no mínimo 8 caracter');
         }
         else{
-            return view('/perfil', ['foto' => '/foto-perfil.jpg', 'msg_alert' => 'Senhas diferentes, tente novamente']);
+            return view('/perfil', ['foto' => '/foto-perfil.jpg'])->with('msg_alert', 'Senhas diferentes, tente novamente');
         }
 
 
@@ -200,5 +202,6 @@ class EventController extends Controller
         $user = auth()->user();
         $user->eventsAsParticipant()->detach($id);
         User::where('id', $id)->delete();
+        return redirect("/")->with('msg', 'Usuário excluído com sucesso');
     }
 }

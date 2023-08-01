@@ -4,7 +4,7 @@
 
 @section('content')
 
-@if ('msg_alert' != null)
+@if ($msg_alert != null)
  <div class="container-fluid">
         <div class="row">
                 <p class="msg-alert">{{$msg_alert}}</p>
@@ -39,7 +39,7 @@
                 </button>
             </div>
         </form>
-        <form action="/deleteUser/1" method="post">
+        <form action="/deleteUser/{{auth()->user()->id}}" method="post">
             @csrf
             <button type="submit" class='btn btn-danger'>
                 <ion-icon name='trash'></ion-icon>Excluir conta

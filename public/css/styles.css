@@ -10,6 +10,7 @@ header{
     border-bottom: 1px solid #ccc;
 }
 
+
 /*Altera as margens dos cards*/
 .row{
     margin: 0;
@@ -287,6 +288,7 @@ footer{
 }
 
 .form-user button{
+    color: white-;
     margin-top: 15px;
     width: 15%;
 }
