@@ -9,5 +9,5 @@ class eventUsers extends Model
 {
     use HasFactory;
 
-    protected $table = 'event_users';
+    protected $table = 'event_user';
 }
