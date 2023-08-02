@@ -27,3 +27,4 @@ perfil do usuário: Colocar foto padrão do usuário - funcionando
             deletar a conta - feito
             Foto do usuário - feito
             Tirar participantes dos eventos - fazer
+            Enviar dados para o Modal;

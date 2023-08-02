@@ -8,7 +8,7 @@ use App\Http\Controllers\EventController;
 /* Define as rotas e qual action chamar
     ['Classe', 'Nome de action']
 */
-Route::get('/', [EventController::class, 'index']);
+Route::get('/', [EventController::class, 'index'])->name('home');
 Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);

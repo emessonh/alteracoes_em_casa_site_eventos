@@ -1,3 +1,4 @@
+
 /* CSS geral*/
 body{
     min-height: 100vh;
@@ -8,6 +9,7 @@ body{
 header{
     background-color: white;
     border-bottom: 1px solid #ccc;
+    height: 70px;
 }
 
 
@@ -60,18 +62,19 @@ footer{
 
 #navbar img{
     margin-left: 10px;
-    width: 40px;
+    width: 30px;
 }
 
 #navbar{
     /*Alinha o texto no container*/
-
     background-color: #fff;
     padding: 5px 0;
+    font-size: larger;
 }
 
 #email-user{
     margin-right: 5px;
+    font-size: larger;
 }
 
 
@@ -285,6 +288,10 @@ footer{
     margin-bottom: 10px;
     width: 40%;
     border-radius: 7px;
+}
+
+.form-user #foto_perfil{
+    margin: auto;
 }
 
 .form-user button{

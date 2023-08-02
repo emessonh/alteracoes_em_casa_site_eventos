@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
+use App\Models\eventUsersUser;
 use Illuminate\Support\Facades\Hash;
 
 class EventController extends Controller
@@ -200,7 +201,12 @@ class EventController extends Controller
 
     public function deleteUser($id){
         $user = auth()->user();
-        $user->eventsAsParticipant()->detach($id);
+        /*$userParticipant = eventUsers::where('user_id', $id)->toArray();
+        if (count($userParticipant) != 0){
+            $userParticipant->detach($id);
+        }
+        */
+        
         User::where('id', $id)->delete();
         return redirect("/")->with('msg', 'Usuário excluído com sucesso');
     }
