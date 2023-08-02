@@ -29,7 +29,7 @@
                 <td>
                     <a href="{{route('editEvent', $event->id)}}" class='btn btn-info edit-btn'><ion-icon name='create-outline'></ion-icon>Editar</a>
                     <!--Chamar a rota através do name-->
-                    <form action="{{route('deleteEvents', $event->id)}}" method="post">
+                    <form action="{{route('deleteEvents', ['id' =>$event->id , 'users'=>count($event->users)])}}" method="post">
                         @csrf
                         @method('DELETE')
                         <button type="submit" class="btn btn-danger delete-btn"><ion-icon name='trash-outline'></ion-icon>Deletar</button>

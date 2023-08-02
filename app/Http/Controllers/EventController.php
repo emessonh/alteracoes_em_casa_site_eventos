@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Event;
 use App\Models\User;
 use App\Models\eventUsers;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\Hash;
 
 class EventController extends Controller
@@ -105,9 +106,14 @@ class EventController extends Controller
 
         return redirect('/')->with('msg', 'Evento criado com sucesso');
     }
-    public function destroy($id){
-        Event::findOrFail($id)->delete();
-        return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
+    public function destroy($id, $users){
+        if ($users == 0){
+            Event::findOrFail($id)->delete();
+            return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
+        }else{
+            return redirect('/dashboard')->with('msg', 'Falha! Evento possue participantes');
+        }
+        
     }
 
     public function edit($id){
@@ -201,16 +207,21 @@ class EventController extends Controller
 
     public function deleteUser($id){
         $user = auth()->user();
-        $userParticipant = eventUsers::where('user_id', $id);
+        /*$userParticipant = eventUsers::where('user_id', $id);
 
         if ($userParticipant){
             
             $user->eventsAsParticipant()->detach($id);
-        }
-        else{
+        }*/
+        try{
             User::where('id', $id)->delete();
-            return redirect("/")->with('msg', 'Usuário excluído com sucesso');
+        }catch (QueryException $excessao){
+            return redirect("/")->with('msg', 'Falha ao excluir conta! Saia dos eventos ou exclua os eventos criados');
         }
+        
+        
+        return redirect("/")->with('msg', 'Usuário excluído com sucesso');
+        
         
         
     }

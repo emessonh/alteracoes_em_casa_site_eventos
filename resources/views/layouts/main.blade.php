@@ -113,7 +113,7 @@
                             <a href="/dashboard" class="nav-link">Meus Eventos</a>
                         </li>
                         <li class="nav-item" style="padding: 9px 5px;">
-                            <form action="/logout" method="get">
+                            <form action="/logout" method="post">
                                 @csrf
                                 <a href="/logout" class='nav-link'
                                     onclick='event.preventDefault();
