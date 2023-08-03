@@ -1,4 +1,12 @@
-
+.profile_photo {
+    max-width: 35px;
+    height: 35px;
+    margin-right: 5px;
+}.imgPerfil{
+    width: 100%;
+    height: 100%;
+    border-radius: 999px;
+}
 /* CSS geral*/
 body{
     min-height: 100vh;

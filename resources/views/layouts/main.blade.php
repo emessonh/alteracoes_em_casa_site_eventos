@@ -40,7 +40,7 @@
         <script type="text/javascript">
             $('#myModal').on('show.bs.modal', function (event) {                                                       <<<<<<<<<<<#myModal = nome do modal
                 var button = $(event.relatedTarget) // Button that triggered the modal
-                var recipientId    = button.data('id')                                                                 <<<<<<<<<<< button.data('id') é o data-id que você passou em cima
+                var recipientId    = button.data('id')                                                                 <<<<<<<<<<<script button.data('id') é o data-id que você passou em cima
                 // Extract info from data-* attributes
                 // If necessary, you could initiate an AJAX request here (and then do the updating in a callback).
                 // Update the modal's content. We'll use jQuery here, but you could use a data binding library or other methods instead.
@@ -113,7 +113,7 @@
                             <a href="/dashboard" class="nav-link">Meus Eventos</a>
                         </li>
                         <li class="nav-item" style="padding: 9px 5px;">
-                            <form action="/logout" method="post">
+                            <form action="/logout" method="get">
                                 @csrf
                                 <a href="/logout" class='nav-link'
                                     onclick='event.preventDefault();
@@ -124,8 +124,11 @@
                         </li>
                     </ul>
                </div>
+                <div class="profile_photo">
+                    <img class='imgPerfil' src="/img/users/{{auth()->user()->profile_photo_path == null? '/foto-perfil.jpg': auth()->user()->profile_photo_path}}" alt="Foto de Perfil">
+                </div>
                 <div id="email-user">
-                    Usuário: {{auth()->user()->email}}
+                    {{auth()->user()->email}}
                 </div>
                @endauth
             </nav>
@@ -134,9 +137,21 @@
         <main>
             <div class="container-fluid">
                 <div class="row">
-                    @if (session('msg'))
-                        <p class="msg">{{session('msg')}}</p>
+                    @if (session('success'))
+                        <div class="container-fluid">
+                            <div class="row">
+                                    <p class="msg">{{session('success')}}</p>
+                            </div>
+                        </div>
                     @endif
+                    @if(session('error'))
+                        <div class="container-fluid">
+                            <div class="row">
+                                <p class="msg-alert">{{session('error')}}</p>
+                            </div>
+                        </div>
+                    @endif
+
                     @yield('content')
                 </div>
             </div>

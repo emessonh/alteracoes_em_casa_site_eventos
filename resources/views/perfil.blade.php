@@ -3,14 +3,6 @@
 @section('title', 'Perfil')
 
 @section('content')
-
-@if ($msg_alert != null)
- <div class="container-fluid">
-        <div class="row">
-                <p class="msg-alert">{{$msg_alert}}</p>
-        </div>
- </div>
- @endif
 <div class="card-user-data">
     <div id='image-perfil'>
         <img src="/img/users/{{$foto}}" alt="Foto de perfil">
@@ -27,11 +19,11 @@
             </div>
             <div class="user-data">
                 <label for="passwordUser">Senha: </label><br>
-                <input type="password" name="passwordUser" id="passwordUser" value="{{auth()->user()->password}}">
+                <input type="password" name="passwordUser" id="passwordUser">
             </div>
             <div class="user-data">
                 <label for="confirmPassword">Confirmação de senha: </label><br>
-                <input type="password" name="confirmPassword" id="confirmPassword" value="{{auth()->user()->password}}">
+                <input type="password" name="confirmPassword" id="confirmPassword" >
             </div>
             <div>
                 <button type="submit" class='btn btn-info'>

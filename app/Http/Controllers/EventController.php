@@ -104,14 +104,17 @@ class EventController extends Controller
 
         $event->save();
 
-        return redirect('/')->with('msg', 'Evento criado com sucesso');
+        return redirect('/')->with('success', 'Evento criado com sucesso');
     }
-    public function destroy($id, $users){
-        if ($users == 0){
+    public function destroy($id){
+
+        $contEvents = eventUsers::where('event_id', $id)->count();
+
+        if ($contEvents == 0){
             Event::findOrFail($id)->delete();
-            return redirect('/dashboard')->with('msg', 'Evento excluído com sucesso!');
+            return redirect('/dashboard')->with('success', 'Evento excluído com sucesso!');
         }else{
-            return redirect('/dashboard')->with('msg', 'Falha! Evento possue participantes');
+            return redirect('/dashboard')->with('error', 'Falha! Evento possui participantes');
         }
         
     }
@@ -146,7 +149,7 @@ class EventController extends Controller
         }
 
         Event::findOrFail($request->id)->update($data);
-        return redirect('/dashboard')->with('msg', 'Evento editado com sucesso!');
+        return redirect('/dashboard')->with('success', 'Evento editado com sucesso!');
     }
 
     public function joinEvent($id){
@@ -156,7 +159,7 @@ class EventController extends Controller
 
         $event = Event::findOrFail($id);
 
-        return redirect('/')->with('msg', 'Presença confirmada no evento '.$event->title);
+        return redirect('/')->with('success', 'Presença confirmada no evento '.$event->title);
 
 
     }
@@ -165,7 +168,7 @@ class EventController extends Controller
         $user = auth()->user();
         $user->eventsAsParticipant()->detach($id);
         $event = Event::findOrFail($id);
-        return redirect('/')->with('msg', 'Você saiu do evento: '.$event->title);
+        return redirect('/')->with('success', 'Você saiu do evento: '.$event->title);
     }
 
     public function updateUser(Request $request){
@@ -175,8 +178,8 @@ class EventController extends Controller
         $confirmPassword = $request->confirmPassword;
 
         $user->email = $email;
-        $user->password = Hash::make($password);
         if ($password == $confirmPassword && strlen($password) >= 8){
+            $user->password = Hash::make($password);
             if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid())
             {
                 $photoUser = $request->foto_perfil;
@@ -193,13 +196,32 @@ class EventController extends Controller
             }else{
                 $user->update();
             }
-            return redirect('/')->with('msg', 'Usuário atualizado com sucesso!');
+            return redirect('/')->with('success', 'Usuário atualizado com sucesso!');
+        }
+        elseif (($password == 0 && $confirmPassword == 0)){
+            if ($request->hasFile('foto_perfil') && $request->file('foto_perfil')->isValid())
+            {
+                $photoUser = $request->foto_perfil;
+
+                $extension = $photoUser->extension();
+
+                $imageName = md5($photoUser->getClientOriginalName() . strtotime('now')) .'.'.$extension;
+
+                $photoUser->move(public_path('/img/users'), $imageName);
+
+                $user->profile_photo_path = $imageName;
+
+                $user->update();
+            }else{
+                $user->update();
+            }
+            return redirect('/')->with('success', 'Usuário atualizado com sucesso!');
         }
         elseif (strlen($password) < 8){
-            return view('/perfil', ['foto' => '/foto-perfil.jpg'])->with('msg_alert', 'Senha muito pequena, a senha deve ter no mínimo 8 caracter');
+            return redirect()->route('showPerfil', $user)->with('error', 'Senha muito pequena, a senha deve ter no mínimo 8 caracteres');
         }
         else{
-            return view('/perfil', ['foto' => '/foto-perfil.jpg'])->with('msg_alert', 'Senhas diferentes, tente novamente');
+            return redirect()->route('showPerfil', $user)->with('error', 'Senhas diferentes, tente novamente');
         }
 
 
@@ -216,11 +238,11 @@ class EventController extends Controller
         try{
             User::where('id', $id)->delete();
         }catch (QueryException $excessao){
-            return redirect("/")->with('msg', 'Falha ao excluir conta! Saia dos eventos ou exclua os eventos criados');
+            return redirect("/")->with('error', 'Falha ao excluir conta! Saia dos eventos ou exclua os eventos criados');
         }
         
         
-        return redirect("/")->with('msg', 'Usuário excluído com sucesso');
+        return redirect("/")->with('success', 'Usuário excluído com sucesso');
         
         
         
