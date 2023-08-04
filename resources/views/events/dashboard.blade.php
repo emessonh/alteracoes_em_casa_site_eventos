@@ -4,6 +4,38 @@
 
 @section('content')
 
+<!--Modal de sair do evento
+<div class="modal fade" id="sairEvento" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Confirmar saída do evento</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                </div>
+                <div class="modal-body">
+                    Deseja realmente sair do evento?
+                </div>
+
+                <div class="modal-footer">
+                    <div>
+                        <form action="#" method="post">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Sair</button>
+                        </form>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+</div>
+-->
+
+
+
 <div class="col-md-10 offset-md-1 dashboard-title-container">
     <h1>Eventos Criados</h1>
 </div>
@@ -29,7 +61,7 @@
                 <td>
                     <a href="{{route('editEvent', $event->id)}}" class='btn btn-info edit-btn'><ion-icon name='create-outline'></ion-icon>Editar</a>
                     <!--Chamar a rota através do name-->
-        
+
                     <form action="{{route('deleteEvents', ['id' => $event->id])}}" method="post">
                         @csrf
                         @method('DELETE')
@@ -72,7 +104,7 @@
                     <form action="/events/leave/{{$event->id}}" method="post">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="btn btn-danger delete-btn">
+                        <button type="submit" class="btn btn-danger delete-btn" data-toggle="modal" data-target="#sairEvento">
                             <ion-icon name='log-out-outline'></ion-icon>
                             Sair do Evento
                         </button>

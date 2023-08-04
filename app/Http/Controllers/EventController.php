@@ -116,7 +116,7 @@ class EventController extends Controller
         }else{
             return redirect('/dashboard')->with('error', 'Falha! Evento possui participantes');
         }
-        
+
     }
 
     public function edit($id){
@@ -168,7 +168,7 @@ class EventController extends Controller
         $user = auth()->user();
         $user->eventsAsParticipant()->detach($id);
         $event = Event::findOrFail($id);
-        return redirect('/')->with('success', 'Você saiu do evento: '.$event->title);
+        return redirect(route('dashboard'))->with('success', 'Você saiu do evento: '.$event->title);
     }
 
     public function updateUser(Request $request){
@@ -232,7 +232,7 @@ class EventController extends Controller
         /*$userParticipant = eventUsers::where('user_id', $id);
 
         if ($userParticipant){
-            
+
             $user->eventsAsParticipant()->detach($id);
         }*/
         try{
@@ -240,11 +240,11 @@ class EventController extends Controller
         }catch (QueryException $excessao){
             return redirect("/")->with('error', 'Falha ao excluir conta! Saia dos eventos ou exclua os eventos criados');
         }
-        
-        
+
+
         return redirect("/")->with('success', 'Usuário excluído com sucesso');
-        
-        
-        
+
+
+
     }
 }

@@ -12,16 +12,16 @@ Route::get('/', [EventController::class, 'index'])->name('home');
 Route::get('/events/create', [EventController::class, 'create'])->middleware('auth');
 Route::post('/events', [EventController::class, 'store']);
 Route::get('/events/{id}', [EventController::class, 'show']);
-Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth');
+Route::get('/dashboard', [EventController::class, 'dashboard'])->middleware('auth')->name('dashboard');
 /** Utilizando name no front para chamar a action, atrvés de name('nome Atribuído') */
 Route::delete('/events/destroy/{id}', [EventController::class, 'destroy'])->middleware('auth')->name('deleteEvents');
 Route::get('/events/edit/{id}', [EventController::class, 'edit'])->middleware('auth')->name('editEvent');
 Route::put('/events/update/{id}', [EventController::class, 'update'])->middleware('auth');
 Route::get('/events/join/{id}', [EventController::class, 'joinEvent'])->middleware('auth');
-Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth');
+Route::delete('/events/leave/{id}', [EventController::class, 'leaveEvent'])->middleware('auth')->name('leaveEvent');
 Route::get('/perfil/{id}', [EventController::class, 'showPerfil'])->middleware('auth')->name('showPerfil');
 Route::post('/updateUser/{id}', [EventController::class, 'updateUser'])->middleware('auth');
-Route::post('/deleteUser/{id}', [EventController::class, 'deleteUser'])->middleware('auth');
+Route::post('/deleteUser/{id}', [EventController::class, 'deleteUser'])->middleware('auth')->name('deleteUser');
 /*
 |--------------------------------------------------------------------------
 | Web Routes
